@@ -9,8 +9,10 @@ sudo make install
 sudo system76-firmware-cli schedule
 
 #Copy firmware files
-sudo cp rom/ec.rom /boot/efi/system76-firmware-update/firmware
-sudo cp rom/firmware.rom /boot/efi/system76-firmware-update/firmware
+$model=NS50AU
+
+sudo cp rom/$model/ec.rom /boot/efi/system76-firmware-update/firmware
+sudo cp rom/$model/firmware.rom /boot/efi/system76-firmware-update/firmware
 sudo rm -rf /boot/efi/system76-firmware-update/firmware/res
 
 #Remove dependencies
