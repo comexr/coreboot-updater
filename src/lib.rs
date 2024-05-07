@@ -32,6 +32,7 @@ const SECONDS_IN_DAY: u64 = 60 * 60 * 24;
 const MODEL_WHITELIST: &[&str] = &[
     "darp9",
     "NS50AU",
+    "NS5x_NS7xPU",
 ];
 
 pub fn model_is_whitelisted(model: &str) -> bool {
