@@ -165,7 +165,7 @@ fn download_firmware_id_(tail_cache: &Path, firmware_id: &str) -> Result<(String
     // };
 
     eprintln!("loading changelog.json");
-    let changelog = util::extract_file(&firmware_data, "./changelog.json").map_err(err_str)?;
+    // let changelog = util::extract_file(&firmware_data, "./changelog.json").map_err(err_str)?;
 
     Ok((tail.digest, changelog))
 }
