@@ -154,15 +154,15 @@ fn download_firmware_id_(tail_cache: &Path, firmware_id: &str) -> Result<(String
         cache.object(digest)?
     };
 
-    let firmware_data = {
-        let file = format!("{}.tar.xz", firmware_id);
-        eprintln!("downloading {}", file);
-        let digest = manifest
-            .files
-            .get(&file)
-            .ok_or(format!("{} not found", file))?;
-        cache.object(digest)?
-    };
+    // let firmware_data = {
+    //     let file = format!("{}.tar.xz", firmware_id);
+    //     eprintln!("downloading {}", file);
+    //     let digest = manifest
+    //         .files
+    //         .get(&file)
+    //         .ok_or(format!("{} not found", file))?;
+    //     cache.object(digest)?
+    // };
 
     eprintln!("loading changelog.json");
     let changelog = util::extract_file(&firmware_data, "./changelog.json").map_err(err_str)?;

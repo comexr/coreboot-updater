@@ -4,7 +4,6 @@
 model=$(sudo dmidecode -s system-version)
 
 #Install dependencies
-sudo dnf install cargo dbus rustc systemd make pkg-config libssl-dev librust-lzma-sys-dev libdbus-1-dev -y
 make
 sudo make install
 
