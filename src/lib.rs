@@ -159,7 +159,7 @@ fn download_firmware_id_(tail_cache: &Path, firmware_id: &str) -> Result<(String
         eprintln!("downloading {}", file);
         let digest = manifest
             .files
-            .get(&file)
+            .get(file)
             .ok_or(format!("{} not found", file))?;
         cache.object(digest)?
     };
