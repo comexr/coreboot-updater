@@ -207,35 +207,35 @@ fn cached_block<F: FnMut() -> anyhow::Result<Block>>(
     }
 }
 
-fn extract<P: AsRef<Path>>(digest: &str, file: &str, path: P) -> Result<(), String> {
-    let cache = download::Cache::new(config::CACHE, None)?;
+// fn extract<P: AsRef<Path>>(digest: &str, file: &str, path: P) -> Result<(), String> {
+//     let cache = download::Cache::new(config::CACHE, None)?;
 
-    let manifest_json = cache.object(digest)?;
-    let manifest = serde_json::from_slice::<Manifest>(&manifest_json).map_err(|e| e.to_string())?;
+//     let manifest_json = cache.object(digest)?;
+//     let manifest = serde_json::from_slice::<Manifest>(&manifest_json).map_err(|e| e.to_string())?;
 
-    let data = {
-        let digest = manifest
-            .files
-            .get(file)
-            .ok_or(format!("{} not found", file))?;
-        cache.object(digest)?
-    };
+//     let data = {
+//         let digest = manifest
+//             .files
+//             .get(file)
+//             .ok_or(format!("{} not found", file))?;
+//         cache.object(digest)?
+//     };
 
-    eprintln!("extracting {} to {}", file, path.as_ref().display());
-    match util::extract(&data, &path) {
-        Ok(()) => (),
-        Err(err) => {
-            return Err(format!(
-                "failed to extract {} to {}: {}",
-                file,
-                path.as_ref().display(),
-                err
-            ));
-        }
-    }
+//     eprintln!("extracting {} to {}", file, path.as_ref().display());
+//     match util::extract(&data, &path) {
+//         Ok(()) => (),
+//         Err(err) => {
+//             return Err(format!(
+//                 "failed to extract {} to {}: {}",
+//                 file,
+//                 path.as_ref().display(),
+//                 err
+//             ));
+//         }
+//     }
 
-    Ok(())
-}
+//     Ok(())
+// }
 
 pub fn schedule(
     digest: &str,
