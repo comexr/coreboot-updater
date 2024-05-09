@@ -207,35 +207,35 @@ fn cached_block<F: FnMut() -> anyhow::Result<Block>>(
     }
 }
 
-// fn extract<P: AsRef<Path>>(digest: &str, file: &str, path: P) -> Result<(), String> {
-//     let cache = download::Cache::new(config::CACHE, None)?;
+fn extract<P: AsRef<Path>>(digest: &str, file: &str, path: P) -> Result<(), String> {
+    let cache = download::Cache::new(config::CACHE, None)?;
 
-//     let manifest_json = cache.object(digest)?;
-//     let manifest = serde_json::from_slice::<Manifest>(&manifest_json).map_err(|e| e.to_string())?;
+    let manifest_json = cache.object(digest)?;
+    let manifest = serde_json::from_slice::<Manifest>(&manifest_json).map_err(|e| e.to_string())?;
 
-//     let data = {
-//         let digest = manifest
-//             .files
-//             .get(file)
-//             .ok_or(format!("{} not found", file))?;
-//         cache.object(digest)?
-//     };
+    let data = {
+        let digest = manifest
+            .files
+            .get(file)
+            .ok_or(format!("{} not found", file))?;
+        cache.object(digest)?
+    };
 
-//     eprintln!("extracting {} to {}", file, path.as_ref().display());
-//     match util::extract(&data, &path) {
-//         Ok(()) => (),
-//         Err(err) => {
-//             return Err(format!(
-//                 "failed to extract {} to {}: {}",
-//                 file,
-//                 path.as_ref().display(),
-//                 err
-//             ));
-//         }
-//     }
+    eprintln!("extracting {} to {}", file, path.as_ref().display());
+    match util::extract(&data, &path) {
+        Ok(()) => (),
+        Err(err) => {
+            return Err(format!(
+                "failed to extract {} to {}: {}",
+                file,
+                path.as_ref().display(),
+                err
+            ));
+        }
+    }
 
-//     Ok(())
-// }
+    Ok(())
+}
 
 pub fn schedule(
     digest: &str,
@@ -251,7 +251,7 @@ pub fn schedule_firmware_id(digest: &str, efi_dir: &str, firmware_id: &str) -> R
     }
 
     let updater_file = "system76-firmware-update.tar.xz";
-    let firmware_file = format!("{}.tar.xz", firmware_id);
+    let firmware_file = "darp9_df60b821b2f5c45288098dba9e084aeb79d491d4133f84b73d298155aba6597e.tar.xz";
     let updater_dir = Path::new(efi_dir).join("system76-firmware-update");
 
     boot::unset_next_boot()?;
