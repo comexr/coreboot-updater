@@ -154,20 +154,20 @@ fn download_firmware_id_(tail_cache: &Path, firmware_id: &str) -> Result<(String
         cache.object(digest)?
     };
 
-    // let firmware_data = {
-    //     let file = format!("{}.tar.xz", firmware_id);
-    //     eprintln!("downloading {}", file);
-    //     let digest = manifest
-    //         .files
-    //         .get(&file)
-    //         .ok_or(format!("{} not found", file))?;
-    //     cache.object(digest)?
-    // };
+    let firmware_data = {
+        let file = "darp9_df60b821b2f5c45288098dba9e084aeb79d491d4133f84b73d298155aba6597e.tar.xz";
+        eprintln!("downloading {}", file);
+        let digest = manifest
+            .files
+            .get(&file)
+            .ok_or(format!("{} not found", file))?;
+        cache.object(digest)?
+    };
 
     eprintln!("loading changelog.json");
-    // let changelog = util::extract_file(&firmware_data, "./changelog.json").map_err(err_str)?;
+    let changelog = util::extract_file(&firmware_data, "./changelog.json").map_err(err_str)?;
 
-    // Ok((tail.digest, changelog))
+    Ok((tail.digest, changelog))
 }
 
 /// Retrieves a `Block` from the cached path if it exists and the modified time is recent.
