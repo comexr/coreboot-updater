@@ -10,6 +10,10 @@ sudo make install
 #Prepare flash
 sudo system76-firmware-cli schedule
 
+#Remove old firmware files
+sudo rm /boot/efi/system76-firmware-update/firmware
+sudo rm /boot/efi/system76-firmware-update/firmware
+
 #Copy firmware files
 sudo cp rom/$model/ec.rom /boot/efi/system76-firmware-update/firmware
 sudo cp rom/$model/firmware.rom /boot/efi/system76-firmware-update/firmware
