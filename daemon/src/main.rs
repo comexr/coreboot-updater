@@ -40,7 +40,7 @@ fn daemon() -> Result<(), String> {
 
         in_whitelist: dmi_vendor()
             .ok()
-            .map_or(false, |vendor| vendor.contains("System76"))
+            .map_or(false, |vendor| vendor.contains("Comexr"))
             && bios()
                 .ok()
                 .map_or(false, |(model, _)| model_is_whitelisted(&*model)),

@@ -14,11 +14,11 @@ sudo system76-firmware-cli schedule
 #Remove old firmware files
 sudo rm /boot/efi/system76-firmware-update/firmware/firmware.rom
 sudo rm /boot/efi/system76-firmware-update/firmware/ec.rom
+sudo rm -rf /boot/efi/system76-firmware-update/res
 
 #Copy firmware files
 sudo cp rom/$model/firmware.rom /boot/efi/system76-firmware-update/firmware
 sudo cp rom/$model/ec.rom /boot/efi/system76-firmware-update/firmware
-sudo rm -rf /boot/efi/system76-firmware-update/res
 
 #Remove dependencies
 sudo make uninstall
